@@ -19,7 +19,7 @@ public class WelcomeActivity extends Activity {
         new Handler().postDelayed(() -> {
             //执行在主线程
             //启动主页面
-            startActivity(new Intent(WelcomeActivity.this,Main0Activity.class));
+            startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
             //关闭当前页面
             finish();
         },2000);

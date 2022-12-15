@@ -86,8 +86,8 @@
     <string name="todo">TODO</string>
     <string name="welcome_title">~更加方便你的生活~</string>
     <string name="menu_guanwang">学校官网</string>
-    <string name="menu_jiaowu">英汉翻译</string>
-    <string name="menu_xinxi">自定义网址</string>
+    <string name="menu_jiaowu">班级信息</string>
+    <string name="menu_xinxi">成绩查询</string>
     <string name="menu_kebiao">我的课表</string>
     <string name="menu_main_chuo">戳我</string>
     <string name="diy_web_set">设置自定义网址的名称:</string>
@@ -109,4 +109,6 @@
     <string name="today_class">   今日课程：</string>
     <string name="fenge">———————————————————</string>
     <string name="no_class">今天的课程结束了！\n XD</string>
+    <string name="classset">班级管理</string>
+    <string name="score_get">批改成绩</string>
 </resources>

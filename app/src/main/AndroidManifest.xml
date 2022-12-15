@@ -35,16 +35,10 @@
         <activity android:name="com.potato.oneall.ui.coursedetails.CourseDetailsActivity" />
         <activity android:name="com.potato.oneall.ui.web.WebActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.potato.oneall.ui.web.WebActivity2"
+        <activity android:name="com.potato.oneall.ui.main.MenuStuActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.potato.oneall.ui.main.Eng_Chs"
+        <activity android:name="com.potato.oneall.ui.main.MenuTeaActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.potato.oneall.ui.web.WebActivity3"
-                  android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.potato.oneall.ui.main.Main0Activity"
-                  android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.potato.oneall.ui.main.MenuSetting"
-                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.potato.oneall.ui.main.MainActivity"
                   android:theme="@style/AppTheme.NoActionBar"/>
         <activity
@@ -55,6 +49,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.potato.oneall.ui.main.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.main.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ClassInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ClassSetActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

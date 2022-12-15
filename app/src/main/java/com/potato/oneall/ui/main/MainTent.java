@@ -15,7 +15,7 @@ public class MainTent extends AppCompatActivity {
         Button button = findViewById(R.id.back_button);
         button.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.setClass(MainTent.this,Main0Activity.class);
+            intent.setClass(MainTent.this, MenuStuActivity.class);
             startActivity(intent);
             }
         );
