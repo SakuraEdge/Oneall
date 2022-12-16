@@ -86,8 +86,8 @@
     <string name="todo">TODO</string>
     <string name="welcome_title">~更加方便你的生活~</string>
     <string name="menu_guanwang">学校官网</string>
-    <string name="menu_jiaowu">班级信息</string>
-    <string name="menu_xinxi">成绩查询</string>
+    <string name="class_info">班级信息</string>
+    <string name="score_info">成绩查询</string>
     <string name="menu_kebiao">我的课表</string>
     <string name="menu_main_chuo">戳我</string>
     <string name="diy_web_set">设置自定义网址的名称:</string>
@@ -98,10 +98,7 @@
     <string name="ji">寄!</string>
     <string name="maintenting">此功能维护中，请更新后再试</string>
     <string name="back">返回</string>
-    <string name="today">今天是</string>
-    <string name="user">User：</string>
-    <string name="hello">你好,</string>
-    <string name="date">2022年3月6日 星期日</string>
+    <string name="date">3月6日|星期日</string>
     <string name="set_userid">设置用户名</string>
     <string name="search_word">请输入需要查询的词:</string>
     <string name="result_word">查询结果:</string>

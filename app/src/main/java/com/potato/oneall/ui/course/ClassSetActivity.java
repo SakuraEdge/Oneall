@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -184,7 +186,7 @@ public class ClassSetActivity extends AppCompatActivity {
                 LinearLayout linearLayout2 = new LinearLayout(this);
                 LinearLayout linearLayout3 = new LinearLayout(this);
 
-                linearLayout2.setPadding(20,10,100,30);
+                linearLayout2.setPadding(20,10,20,30);
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
 
                 linearLayout3.setBackgroundColor(Color.WHITE);
@@ -194,9 +196,11 @@ public class ClassSetActivity extends AppCompatActivity {
                     linearLayout3.setPadding(20,0,10,15);
 
                 ImageView imageView = new ImageView(this);
-                imageView.setMinimumHeight(10);
-                imageView.setMinimumWidth(10);
+
                 imageView.setPadding(10,0,20,0);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    imageView.setForegroundGravity(Gravity.CENTER|Gravity.START);
+                }
 
                 int num = (int) (Math.random() * 4 + 0);
 
@@ -220,18 +224,16 @@ public class ClassSetActivity extends AppCompatActivity {
 
                 TextView textView1 = new TextView(this);
                 textView1.setText(msg);
-                textView1.setTextSize(15);
+                textView1.setTextSize(13);
                 textView1.setTextColor(Color.GRAY);
-                textView1.setPadding(0,0,0,0);
 
                 linearLayout1.setOnClickListener(new ClassSetActivity.textListener(textView));
                 linearLayout1.setOnLongClickListener(new ClassSetActivity.textListener2(textView));
                 linearLayout1.setPadding(20,20,20,20);
-                linearLayout1.setBackgroundResource(R.drawable.border_black);
+                linearLayout1.setGravity(Gravity.CENTER);
 
 
                 linearLayout1.addView(imageView);
-                linearLayout2.setBackgroundResource(R.drawable.border_stroke);
                 linearLayout2.addView(textView);
                 linearLayout2.addView(textView1);
                 linearLayout1.addView(linearLayout2);
@@ -257,7 +259,7 @@ public class ClassSetActivity extends AppCompatActivity {
             className = className.replace("班级名称：","");
             intent.putExtra("teacherName",teacherName);
             intent.putExtra("className",className);
-            intent.setClass(ClassSetActivity.this,ClassTeaInfoActivity.class);
+            intent.setClass(ClassSetActivity.this,ClassTeaListActivity.class);
             startActivity(intent);
         }
     }

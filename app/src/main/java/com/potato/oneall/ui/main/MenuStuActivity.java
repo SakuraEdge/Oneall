@@ -31,23 +31,15 @@ public class MenuStuActivity extends AppCompatActivity {
         setContentView(R.layout.menu_student);
         ImageButton schoolButton = findViewById(R.id.schoolButton);
         //跳转至官网
-        ImageButton engButton = findViewById(R.id.classInfoButton);
-        //跳转至英汉翻译
-        ImageButton DIYButton = findViewById(R.id.scoreInfoButton);
-        //跳转至自定义页面
+        ImageButton classInfoButton = findViewById(R.id.classInfoButton);
+        //跳转至班级信息页面
+        ImageButton scoreInfoButton = findViewById(R.id.scoreInfoButton);
+        //跳转至成绩查询页面
         ImageButton tableButton = findViewById(R.id.tableButton);
-        //跳转至课表
-        ImageButton playButton = findViewById(R.id.playButton);
-        //休闲按钮
-        TextView DIYname = findViewById(R.id.DIYname);
-        TextView UserID = findViewById(R.id.userid);
-        ImageButton setButton = findViewById(R.id.setButton);
 
         //登出
         ImageButton LoginOutButton = findViewById(R.id.login_out);
 
-        TextView classpd = findViewById(R.id.class_pd);
-        ImageButton refresh_button = findViewById(R.id.refresh_button);
 
         //设置年月日
         TextView getTime = findViewById(R.id.getTime);
@@ -57,25 +49,6 @@ public class MenuStuActivity extends AppCompatActivity {
 
         DBHelper dbHelper = new DBHelper(MenuStuActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor cursor2 = db.rawQuery("select * from login_info",null);
-        cursor2.moveToFirst();
-        String userid = cursor2.getString(cursor2.getColumnIndex("name")) + "同学：";
-        UserID.setText(userid);
-
-        refresh_button.setOnClickListener(v -> {
-            String[] msg_class = {"今天的课程结束了！\n <(￣︶￣)/"
-                    ,"今天的课程结束了！\n o(≧口≦)o"
-                    ,"今天的课程结束了！\n (=^_^=)"
-                    ,"今天的课程结束了！\n XD"
-                    ,"今天的课程结束了！\n (#￣▽￣#)"
-                    ,"今天的课程结束了！\n <(@￣︶￣@)>"
-                    ,"今天的课程结束了！\n ╮(￣▽￣)╭"};
-
-            int num = (int) (Math.random() * msg_class.length-1 + 0);
-
-            classpd.setText(msg_class[num]);
-
-        });
 
         LoginOutButton.setOnClickListener(v -> {
             db.execSQL("update login_info set name = null");
@@ -103,39 +76,18 @@ public class MenuStuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        engButton.setOnClickListener(v -> {
+        classInfoButton.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setClass(MenuStuActivity.this, ClassInfoActivity.class);
             //跳转至班级信息界面
             startActivity(intent);
         });
 
-        DIYButton.setOnClickListener(v -> {
+        scoreInfoButton.setOnClickListener(v -> {
                 Intent intent = new Intent();
                 intent.setClass(MenuStuActivity.this, WebActivity3.class);
                 //跳转至DIY界面
                 startActivity(intent);
-        });
-
-        playButton.setOnClickListener(v -> {
-            String[] msg = {"劳逸结合是不错，但也别放松过头 "
-                    ,"耽误太多时间，事情就做不完了 o(≧口≦)o"
-                    ,"无论是冒险还是做生意，机会都稍纵即逝"
-                    ,"劲腰娜舞————！！"
-                    ,"交给我，什么都可以交给我"
-                    ,"进不去！怎么想都进不去吧"
-                    ,"工作还没做完，真的能提前休息吗"};
-            //“经典语录”
-
-            int num = (int) (Math.random() * msg.length-1 + 0);
-            //随机数
-            Toast.makeText(MenuStuActivity.this,msg[num],Toast.LENGTH_SHORT).show();
-        });
-
-        setButton.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setClass(MenuStuActivity.this, MainTent.class);
-            startActivity(intent);
         });
     }
 
@@ -146,9 +98,8 @@ public class MenuStuActivity extends AppCompatActivity {
     private String get_Time(){
         String times = "";
         Calendar i = Calendar.getInstance();
-        times += i.get(Calendar.YEAR)+"年";
         times += i.get(Calendar.MONTH)+1+"月";
-        times += i.get(Calendar.DAY_OF_MONTH)+"日\t\t";
+        times += i.get(Calendar.DAY_OF_MONTH)+"日 | ";
         int week = i.get(Calendar.DAY_OF_WEEK)-1;
         String[] weeks = {"星期日","星期一","星期二","星期三","星期四","星期五","星期六","出错"};
         times += weeks[week];
