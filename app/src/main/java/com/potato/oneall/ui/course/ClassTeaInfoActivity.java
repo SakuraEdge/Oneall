@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.os.Build;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +29,10 @@ import com.potato.oneall.util.SSLPass;
 import com.potato.timetable.R;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -42,35 +45,35 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ClassSetActivity extends AppCompatActivity {
+public class ClassTeaInfoActivity extends AppCompatActivity {
     JSONArray array = new JSONArray();
-    String msg = null;
-    String teacherName;
+    String name;
+    String classname;
+    String msg;
     OkHttpClient client = SSLPass.sslPass();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DBHelper dbHelper = new DBHelper(ClassSetActivity.this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("select * from login_info",null);
-        cursor.moveToFirst();
-        teacherName = cursor.getString(cursor.getColumnIndex("name"));
-
+        Intent gets = getIntent();
+        classname = gets.getStringExtra("className");
+        name = gets.getStringExtra("teacherName");
         setContentView(R.layout.class_set);
 
-        LinearLayout LinearLayout = findViewById(R.id.courseList);
         ImageButton imageButton = findViewById(R.id.createClassButton);
 
-        String url="https://223.247.140.116:35152/SelectClassByTeacherName";
+        String names = "所在班级: "+classname;
+        TextView textView = findViewById(R.id.classname);
+        textView.setText(names);
+        LinearLayout LinearLayout = findViewById(R.id.courseList);
+
+        String url="https://223.247.140.116:35152/SelectCourse";
+
         Map<String,String> map = new HashMap<>();
-        map.put("teacherName",teacherName);
+        map.put("classname",classname);
+
         String json = JSON.toJSONString(map);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
-
-
         Request request = new Request.Builder()
                 .post(requestBody)
                 .url(url)
@@ -89,27 +92,30 @@ public class ClassSetActivity extends AppCompatActivity {
         });
         initData(LinearLayout);
 
-        cursor.close();
-
-
         imageButton.setOnClickListener(v -> {
             LinearLayout linearLayout1 = new LinearLayout(this);
             linearLayout1.setPadding(20,20,20,20);
             linearLayout1.setOrientation(android.widget.LinearLayout.VERTICAL);
 
-            EditText classname = new EditText(this);
-            classname.setHint("请输入课程名称");
-            classname.setBackgroundResource(R.drawable.border_black);
-            classname.setPadding(20,20,20,20);
+            EditText coursename = new EditText(this);
+            coursename.setHint("请输入课程名称");
+            coursename.setBackgroundResource(R.drawable.border_black);
+            coursename.setPadding(20,20,20,20);
 
-            EditText maxNum = new EditText(this);
-            maxNum.setHint("请输入班级最大人数");
-            maxNum.setBackgroundResource(R.drawable.border_black);
-            maxNum.setPadding(20,20,20,20);
+            EditText address = new EditText(this);
+            address.setHint("请输入上课地点");
+            address.setBackgroundResource(R.drawable.border_black);
+            address.setPadding(20,20,20,20);
+
+            EditText time = new EditText(this);
+            time.setHint("请输入上课时间");
+            time.setBackgroundResource(R.drawable.border_black);
+            time.setPadding(20,20,20,20);
 
 
-            linearLayout1.addView(classname);
-            linearLayout1.addView(maxNum);
+            linearLayout1.addView(coursename);
+            linearLayout1.addView(address);
+            linearLayout1.addView(time);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("创建新班级")
@@ -117,17 +123,18 @@ public class ClassSetActivity extends AppCompatActivity {
             builder.setPositiveButton("创建", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String name = classname.getText().toString();
-                    String num = maxNum.getText().toString();
-                    System.out.println(name);
-                    System.out.println(num);
+                    String name1 = coursename.getText().toString();
+                    String address1 = address.getText().toString();
+                    String time1 = time.getText().toString();
 
                     Map<String,String> map1 = new HashMap<>();
-                    map1.put("classname",name);
-                    map1.put("teacherName",teacherName);
-                    map1.put("maxNum",num);
+                    map1.put("classname",classname);
+                    map1.put("courseName",name1);
+                    map1.put("teacherName",name);
+                    map1.put("courseTime",time1);
+                    map1.put("address",address1);
 
-                    String url1 = "https://223.247.140.116:35152/InsertClass";
+                    String url1 = "https://223.247.140.116:35152/InsertCourse";
                     String json1 = JSON.toJSONString(map1);
                     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
 
@@ -149,14 +156,9 @@ public class ClassSetActivity extends AppCompatActivity {
                     recreate();
                 }
             }).show();
-
-
-
         });
 
     }
-
-
 
     private void initData(LinearLayout linearLayout){
         new Handler().postDelayed(() -> {
@@ -168,7 +170,7 @@ public class ClassSetActivity extends AppCompatActivity {
                 linearLayout2.setPadding(20,20,20,20);
                 linearLayout2.setBackgroundResource(R.drawable.border_black);
                 TextView textView = new TextView(this);
-                textView.setText("当前未有管理的班级，请右上角新建班级");
+                textView.setText("当前班级下未有课程，请右上角新建课程");
                 textView.setTextSize(18);
                 linearLayout2.addView(textView);
                 linearLayout1.addView(linearLayout2);
@@ -180,13 +182,14 @@ public class ClassSetActivity extends AppCompatActivity {
                 String str = JSON.toJSONString(array.get(i));
                 JSONObject maps = JSON.parseObject(str);
 
-                String classname = "班级名称：" + maps.get("classname");
-                String msg = "最大人数：" + maps.get("maxNum") + " \t \t" + "班级主任："+maps.get("teacherName");
+                String classname = "课程名称：" + maps.get("name");
+                String msg = "课程地址：" + maps.get("address") + " \t \t" + "授课老师："+maps.get("teacherName");
+
                 LinearLayout linearLayout1 = new LinearLayout(this);
                 LinearLayout linearLayout2 = new LinearLayout(this);
                 LinearLayout linearLayout3 = new LinearLayout(this);
 
-                linearLayout2.setPadding(20,10,20,30);
+                linearLayout2.setPadding(20,10,100,30);
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
 
                 linearLayout3.setBackgroundColor(Color.WHITE);
@@ -196,11 +199,9 @@ public class ClassSetActivity extends AppCompatActivity {
                     linearLayout3.setPadding(20,0,10,15);
 
                 ImageView imageView = new ImageView(this);
-
+                imageView.setMinimumHeight(10);
+                imageView.setMinimumWidth(10);
                 imageView.setPadding(10,0,20,0);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    imageView.setForegroundGravity(Gravity.CENTER|Gravity.START);
-                }
 
                 int num = (int) (Math.random() * 4 + 0);
 
@@ -224,16 +225,18 @@ public class ClassSetActivity extends AppCompatActivity {
 
                 TextView textView1 = new TextView(this);
                 textView1.setText(msg);
-                textView1.setTextSize(13);
+                textView1.setTextSize(15);
                 textView1.setTextColor(Color.GRAY);
+                textView1.setPadding(0,0,0,0);
 
-                linearLayout1.setOnClickListener(new ClassSetActivity.textListener(textView));
-                linearLayout1.setOnLongClickListener(new ClassSetActivity.textListener2(textView));
+                linearLayout1.setOnClickListener(new textListener(textView));
+                linearLayout1.setOnLongClickListener(new textListener2(textView));
                 linearLayout1.setPadding(20,20,20,20);
-                linearLayout1.setGravity(Gravity.CENTER);
+                linearLayout1.setBackgroundResource(R.drawable.border_black);
 
 
                 linearLayout1.addView(imageView);
+                linearLayout2.setBackgroundResource(R.drawable.border_stroke);
                 linearLayout2.addView(textView);
                 linearLayout2.addView(textView1);
                 linearLayout1.addView(linearLayout2);
@@ -255,11 +258,11 @@ public class ClassSetActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            String className = textView.getText().toString();
-            className = className.replace("班级名称：","");
-            intent.putExtra("teacherName",teacherName);
-            intent.putExtra("className",className);
-            intent.setClass(ClassSetActivity.this,ClassTeaListActivity.class);
+            String courseName = textView.getText().toString();
+            courseName = courseName.replace("课程名称：","");
+            intent.putExtra("courseName",courseName);
+            intent.putExtra("name",name);
+            intent.setClass(ClassTeaInfoActivity.this,CourseInfoActivity.class);
             startActivity(intent);
         }
     }
@@ -273,8 +276,8 @@ public class ClassSetActivity extends AppCompatActivity {
 
         @Override
         public boolean onLongClick(View v) {
-            TextView textView1 = new TextView(ClassSetActivity.this);
-            LinearLayout linearLayout1 = new LinearLayout(ClassSetActivity.this);
+            TextView textView1 = new TextView(ClassTeaInfoActivity.this);
+            LinearLayout linearLayout1 = new LinearLayout(ClassTeaInfoActivity.this);
             linearLayout1.setPadding(100,60,20,20);
             textView1.setPadding(20,20,20,20);
             textView1.setTextSize(15);
@@ -283,22 +286,24 @@ public class ClassSetActivity extends AppCompatActivity {
 
             linearLayout1.addView(textView1);
 
-            String classname1 = textView.getText().toString();
-            classname1 = classname1.replace("班级名称：","");
-            String msg = "是否删除班级"+classname1+"？";
+            String courseName = textView.getText().toString();
+            courseName = courseName.replace("课程名称：","");
+
+            String msg = "是否删除课程"+courseName+"？";
             textView1.setText(msg);
-            AlertDialog.Builder builder = new AlertDialog.Builder(ClassSetActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(ClassTeaInfoActivity.this);
             builder.setTitle("删除确认")
                     .setView(linearLayout1).setNegativeButton("取消",null);
-            String finalClassname = classname1;
 
+            String finalCourseName = courseName;
             builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Map<String,String> map = new HashMap<>();
-                    map.put("classname", finalClassname);
+                    map.put("classname", classname);
+                    map.put("courseName", finalCourseName);
 
-                    String url1 = "https://223.247.140.116:35152/DeleteClass";
+                    String url1 = "https://223.247.140.116:35152/DeleteCourse";
                     String json1 = JSON.toJSONString(map);
                     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
 

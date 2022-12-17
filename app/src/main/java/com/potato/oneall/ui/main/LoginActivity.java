@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         is_login = true;
                         post = jsonObject.get("post").toString();
                         classname = jsonObject.get("classname").toString();
+                        System.out.println(classname);
                     }
                 }
             });
