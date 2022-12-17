@@ -132,6 +132,11 @@ dependencies {
     implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
     implementation 'com.github.lihangleo2:ShadowLayout:3.1.1'
     implementation 'com.android.support:appcompat-v7:23.+'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation 'com.youth.banner:banner:1.4.10'
+
+
 
 
 // 注意：分包之后不会有默认的Header和Footer需要手动添加！还是原来的三种方法！

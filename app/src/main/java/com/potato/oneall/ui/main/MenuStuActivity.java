@@ -1,10 +1,12 @@
 package com.potato.oneall.ui.main;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +20,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.potato.oneall.ui.web.WebActivity;
 import com.potato.oneall.ui.web.WebActivity3;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class MenuStuActivity extends AppCompatActivity {
@@ -29,6 +36,25 @@ public class MenuStuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_student);
+
+        List<Integer> images = new ArrayList<>();
+        images.add(R.mipmap.banner_1);
+        images.add(R.mipmap.banner_2);
+
+        Banner banner = findViewById(R.id.banner);
+        //设置内置样式
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        banner.setImageLoader(new MenuStuActivity.GlideImageLoader());
+        //设置图片网址或地址的集合
+        banner.setImages(images);
+        //设置轮播间隔时间
+        banner.setDelayTime(2000);
+        //设置是否为自动轮播 默认是 “是”
+        banner.isAutoPlay(true);
+        //设置显示器的位置   小点点 左中右
+        banner.setIndicatorGravity(BannerConfig.CENTER);
+        banner.start(); //一定不能缺start
+
         ImageButton schoolButton = findViewById(R.id.schoolButton);
         //跳转至官网
         ImageButton classInfoButton = findViewById(R.id.classInfoButton);
@@ -89,6 +115,21 @@ public class MenuStuActivity extends AppCompatActivity {
                 //跳转至DIY界面
                 startActivity(intent);
         });
+    }
+
+
+    public class GlideImageLoader extends ImageLoader {
+        @Override
+        public void displayImage(Context context, Object path, ImageView imageView) {
+            imageView.setImageResource((Integer) path);
+        }
+
+        //提供createImageView 方法，如果不用可以不重写这个方法，主要是方便自定义ImageView的创建
+        @Override
+        public ImageView createImageView(Context context) {
+            //使用fresco，需要创建它提供的ImageView，当然你也可以用自己自定义的具有图片加载功能的ImageView
+            return new ImageView(context);
+        }
     }
 
 
