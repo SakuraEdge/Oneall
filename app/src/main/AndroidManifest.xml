@@ -65,6 +65,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.potato.oneall.ui.course.ClassTeaListActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ClassStuInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

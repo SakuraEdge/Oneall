@@ -55,11 +55,15 @@ public class ClassTeaListActivity extends AppCompatActivity {
         setContentView(R.layout.class_tea_list);
 
 
-        String names = "所在班级: "+classname;
+        String names = classname;
         TextView textView = findViewById(R.id.classname);
         textView.setText(names);
 
-        LinearLayout courseList = findViewById(R.id.courseList);
+        ImageButton courseList = findViewById(R.id.courseListButton);
+        ImageButton stuList = findViewById(R.id.stuListButton);
+        ImageButton stuAdd = findViewById(R.id.stuAddButton);
+
+
         courseList.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.putExtra("className",classname);
@@ -68,7 +72,14 @@ public class ClassTeaListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        LinearLayout stuAdd = findViewById(R.id.stuAdd);
+        stuList.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("className",classname);
+            intent.setClass(ClassTeaListActivity.this,ClassStuInfoActivity.class);
+            startActivity(intent);
+        });
+
+
         stuAdd.setOnClickListener(v -> {
             LinearLayout linearLayout1 = new LinearLayout(this);
             linearLayout1.setPadding(20,20,20,20);

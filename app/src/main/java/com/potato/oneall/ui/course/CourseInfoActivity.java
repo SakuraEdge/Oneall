@@ -36,9 +36,9 @@ public class CourseInfoActivity extends AppCompatActivity {
         String courseName = gets.getStringExtra("courseName");
         String name = gets.getStringExtra("name");
 
-        setContentView(R.layout.class_info);
+        setContentView(R.layout.course_info);
         TextView textView = findViewById(R.id.classname);
-        String title = "课程名称："+ courseName;
+        String title = courseName;
         textView.setText(title);
 
         OkHttpClient client = SSLPass.sslPass();

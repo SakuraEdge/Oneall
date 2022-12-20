@@ -292,33 +292,30 @@ public class ClassSetActivity extends AppCompatActivity {
                     .setView(linearLayout1).setNegativeButton("取消",null);
             String finalClassname = classname1;
 
-            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Map<String,String> map = new HashMap<>();
-                    map.put("classname", finalClassname);
+            builder.setPositiveButton("确认", (dialog, which) -> {
+                Map<String,String> map = new HashMap<>();
+                map.put("classname", finalClassname);
 
-                    String url1 = "https://223.247.140.116:35152/DeleteClass";
-                    String json1 = JSON.toJSONString(map);
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
+                String url1 = "https://223.247.140.116:35152/DeleteClass";
+                String json1 = JSON.toJSONString(map);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
 
-                    Request request = new Request.Builder()
-                            .post(requestBody)
-                            .url(url1)
-                            .build();
-                    Call call1 = client.newCall(request);
-                    call1.enqueue(new Callback() {
-                        @Override
-                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            e.printStackTrace();
-                        }
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            System.out.println(Objects.requireNonNull(response.body()).string());
-                        }
-                    });
-                    recreate();
-                }
+                Request request = new Request.Builder()
+                        .post(requestBody)
+                        .url(url1)
+                        .build();
+                Call call1 = client.newCall(request);
+                call1.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        e.printStackTrace();
+                    }
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        System.out.println(Objects.requireNonNull(response.body()).string());
+                    }
+                });
+                recreate();
             }).show();
 
             return true;

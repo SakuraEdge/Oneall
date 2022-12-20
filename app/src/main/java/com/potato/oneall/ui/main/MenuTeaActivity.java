@@ -40,6 +40,9 @@ public class MenuTeaActivity extends AppCompatActivity {
         images.add(R.mipmap.banner_1);
         images.add(R.mipmap.banner_2);
 
+
+
+
         Banner banner = (Banner) findViewById(R.id.banner);
         //设置内置样式
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
@@ -113,6 +116,7 @@ public class MenuTeaActivity extends AppCompatActivity {
                 startActivity(intent);
         });
     }
+
 
     //图片加载类
     public class GlideImageLoader extends ImageLoader {

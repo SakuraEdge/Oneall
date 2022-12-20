@@ -45,45 +45,11 @@
     </com.lihang.ShadowLayout>
 
 
-    <com.lihang.ShadowLayout
-        android:id="@+id/refresh_button0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:hl_layoutBackground="#fff"
-        app:hl_layoutBackground_true="#EBF7FF"
-        app:hl_shadowColor="#6a000000"
-        app:hl_shadowLimit="0dp"
-        app:hl_shapeMode="ripple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1">
-
-        <LinearLayout
-            android:id="@+id/refresh_button"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1.2"
-            app:layout_constraintEnd_toEndOf="parent">
-
-        </LinearLayout>
-
-    </com.lihang.ShadowLayout>
-
     <TextView
         android:id="@+id/schoolname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="450dp"
+        android:layout_marginTop="5dp"
         android:textColor="#000000"
         android:text="@string/menu_guanwang"
         android:textAlignment="center"
@@ -92,13 +58,13 @@
         app:layout_constraintEnd_toEndOf="@+id/schoolButton"
         app:layout_constraintStart_toStartOf="@+id/schoolButton"
         app:layout_constraintTop_toBottomOf="@+id/schoolButton"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/engname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="450dp"
+        android:layout_marginTop="5dp"
         android:text="@string/classset"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -107,13 +73,13 @@
         app:layout_constraintEnd_toEndOf="@+id/classInfoButton"
         app:layout_constraintStart_toStartOf="@+id/classInfoButton"
         app:layout_constraintTop_toBottomOf="@+id/classInfoButton"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/DIYname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="450dp"
+        android:layout_marginTop="5dp"
         android:text="@string/score_get"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -122,13 +88,13 @@
         app:layout_constraintEnd_toEndOf="@+id/scoreInfoButton"
         app:layout_constraintStart_toStartOf="@+id/scoreInfoButton"
         app:layout_constraintTop_toBottomOf="@+id/scoreInfoButton"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/tablename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="450dp"
+        android:layout_marginTop="5dp"
         android:text="@string/menu_kebiao"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -137,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="@+id/tableButton"
         app:layout_constraintStart_toStartOf="@+id/tableButton"
         app:layout_constraintTop_toBottomOf="@+id/tableButton"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0" />
 
     <ImageButton
         android:id="@+id/schoolButton"

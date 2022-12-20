@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -62,7 +63,7 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
 
         ImageButton imageButton = findViewById(R.id.createClassButton);
 
-        String names = "所在班级: "+classname;
+        String names = classname;
         TextView textView = findViewById(R.id.classname);
         textView.setText(names);
         LinearLayout LinearLayout = findViewById(R.id.courseList);
@@ -189,19 +190,15 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
                 LinearLayout linearLayout2 = new LinearLayout(this);
                 LinearLayout linearLayout3 = new LinearLayout(this);
 
-                linearLayout2.setPadding(20,10,100,30);
+                linearLayout2.setPadding(20,10,20,30);
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
-
-                linearLayout3.setBackgroundColor(Color.WHITE);
-                if (i==0)
-                    linearLayout3.setPadding(20,50,10,15);
-                else
-                    linearLayout3.setPadding(20,0,10,15);
+                linearLayout2.setGravity(Gravity.CENTER);
 
                 ImageView imageView = new ImageView(this);
-                imageView.setMinimumHeight(10);
-                imageView.setMinimumWidth(10);
                 imageView.setPadding(10,0,20,0);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    imageView.setForegroundGravity(Gravity.CENTER|Gravity.START);
+                }
 
                 int num = (int) (Math.random() * 4 + 0);
 
@@ -225,18 +222,17 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
 
                 TextView textView1 = new TextView(this);
                 textView1.setText(msg);
-                textView1.setTextSize(15);
+                textView1.setTextSize(14);
                 textView1.setTextColor(Color.GRAY);
                 textView1.setPadding(0,0,0,0);
 
                 linearLayout1.setOnClickListener(new textListener(textView));
                 linearLayout1.setOnLongClickListener(new textListener2(textView));
                 linearLayout1.setPadding(20,20,20,20);
-                linearLayout1.setBackgroundResource(R.drawable.border_black);
+                linearLayout1.setGravity(Gravity.CENTER);
 
 
                 linearLayout1.addView(imageView);
-                linearLayout2.setBackgroundResource(R.drawable.border_stroke);
                 linearLayout2.addView(textView);
                 linearLayout2.addView(textView1);
                 linearLayout1.addView(linearLayout2);

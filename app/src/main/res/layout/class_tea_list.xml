@@ -6,10 +6,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/title"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,122 +18,174 @@
             android:id="@+id/classname"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorWhite"
             android:gravity="center"
+            android:padding="10dp"
             android:text="班级名"
             android:textColor="@color/colorBlack"
             android:textSize="24sp" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/stuAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/border_black"
-        android:paddingStart="30dp"
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:srcCompat="@mipmap/list_bg" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/stu_add"
-            android:layout_gravity="center"
-            android:padding="10dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_black"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="添加学生"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/stuList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/border_black"
-        android:paddingStart="30dp"
+    <com.lihang.ShadowLayout
+        android:id="@+id/imageView7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:hl_cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stuAdd">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/stu_list"
-            android:layout_gravity="center"
-            android:padding="10dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="20dp">
+            android:id="@+id/imageView70"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="2.5"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintVertical_bias="0.235"
+            app:srcCompat="@mipmap/main_button_bg" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_black"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="学生列表"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </LinearLayout>
+    </com.lihang.ShadowLayout>
 
-
-    <LinearLayout
-        android:id="@+id/courseList"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/schoolname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/border_black"
-        android:paddingStart="30dp"
+        android:layout_marginTop="5dp"
+        android:text="添加学生"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+
+
+        app:layout_constraintEnd_toEndOf="@+id/stuAddButton"
+        app:layout_constraintStart_toStartOf="@+id/stuAddButton"
+        app:layout_constraintTop_toBottomOf="@+id/stuAddButton" />
+
+    <TextView
+        android:id="@+id/engname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="学生列表"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="@+id/stuListButton"
+        app:layout_constraintStart_toStartOf="@+id/stuListButton"
+        app:layout_constraintTop_toBottomOf="@+id/stuListButton"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/DIYname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="课程列表"
+        android:textAlignment="center"
+        android:textColor="#000000"
+
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/courseListButton"
+        app:layout_constraintStart_toStartOf="@+id/courseListButton"
+        app:layout_constraintTop_toBottomOf="@+id/courseListButton" />
+
+    <TextView
+        android:id="@+id/tablename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="聊天室"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/talkRoomButton"
+        app:layout_constraintStart_toStartOf="@+id/talkRoomButton"
+        app:layout_constraintTop_toBottomOf="@+id/talkRoomButton"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageButton
+        android:id="@+id/stuAddButton"
+        style="@style/ImageButton.Compat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        android:background="@drawable/zp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stuList">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.17"
+        app:srcCompat="@mipmap/school_offical" />
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/course_list"
-            android:padding="10dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="20dp">
+    <ImageButton
+        android:id="@+id/talkRoomButton"
+        style="@style/ImageButton.Compat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        android:background="@drawable/zp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.17"
+        app:srcCompat="@mipmap/class_img" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_black"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="课程列表"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp" />
-        </LinearLayout>
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/stuListButton"
+        style="@style/ImageButton.Compat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        android:background="@drawable/zp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.17"
+        app:srcCompat="@mipmap/class_info" />
+
+    <ImageButton
+        android:id="@+id/courseListButton"
+        style="@style/ImageButton.Compat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        android:background="@drawable/zp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.17"
+        app:srcCompat="@mipmap/score_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
