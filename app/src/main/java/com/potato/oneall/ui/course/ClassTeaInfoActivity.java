@@ -121,41 +121,38 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("创建新班级")
                     .setView(linearLayout1).setNegativeButton("取消",null);
-            builder.setPositiveButton("创建", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String name1 = coursename.getText().toString();
-                    String address1 = address.getText().toString();
-                    String time1 = time.getText().toString();
+            builder.setPositiveButton("创建", (dialog, which) -> {
+                String name1 = coursename.getText().toString();
+                String address1 = address.getText().toString();
+                String time1 = time.getText().toString();
 
-                    Map<String,String> map1 = new HashMap<>();
-                    map1.put("classname",classname);
-                    map1.put("courseName",name1);
-                    map1.put("teacherName",name);
-                    map1.put("courseTime",time1);
-                    map1.put("address",address1);
+                Map<String,String> map1 = new HashMap<>();
+                map1.put("classname",classname);
+                map1.put("courseName",name1);
+                map1.put("teacherName",name);
+                map1.put("courseTime",time1);
+                map1.put("address",address1);
 
-                    String url1 = "https://223.247.140.116:35152/InsertCourse";
-                    String json1 = JSON.toJSONString(map1);
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
+                String url1 = "https://223.247.140.116:35152/InsertCourse";
+                String json1 = JSON.toJSONString(map1);
+                RequestBody requestBody1 = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
 
-                    Request request = new Request.Builder()
-                            .post(requestBody)
-                            .url(url1)
-                            .build();
-                    Call call1 = client.newCall(request);
-                    call1.enqueue(new Callback() {
-                        @Override
-                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                            e.printStackTrace();
-                        }
-                        @Override
-                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                            msg = (Objects.requireNonNull(response.body()).string());
-                        }
-                    });
-                    recreate();
-                }
+                Request request1 = new Request.Builder()
+                        .post(requestBody1)
+                        .url(url1)
+                        .build();
+                Call call1 = client.newCall(request1);
+                call1.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call2, @NotNull IOException e) {
+                        e.printStackTrace();
+                    }
+                    @Override
+                    public void onResponse(@NotNull Call call2, @NotNull Response response) throws IOException {
+                        msg = (Objects.requireNonNull(response.body()).string());
+                    }
+                });
+                recreate();
             }).show();
         });
 
@@ -258,6 +255,7 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
             courseName = courseName.replace("课程名称：","");
             intent.putExtra("courseName",courseName);
             intent.putExtra("name",name);
+            intent.putExtra("classname",classname);
             intent.setClass(ClassTeaInfoActivity.this,CourseInfoActivity.class);
             startActivity(intent);
         }
