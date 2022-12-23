@@ -112,12 +112,13 @@ public class SignInInfoActivity extends AppCompatActivity {
                 String str = JSON.toJSONString(array.get(i));
                 JSONObject maps = JSON.parseObject(str);
 
+                TextView textView1 = new TextView(this);
                 String classname = "姓名：" + maps.get("studentName");
                 String sign = (String) maps.get("signIn");
                 switch (Objects.requireNonNull(sign)){
-                    case "0": msg = "签到状态：未签到";break;
-                    case "1": msg = "签到状态：已签到";break;
-                    case "2": msg = "签到状态：已请假";break;
+                    case "0": msg = "签到状态：未签到";textView1.setTextColor(Color.RED);break;
+                    case "1": msg = "签到状态：已签到";textView1.setTextColor(Color.DKGRAY);break;
+                    case "2": msg = "签到状态：已请假";textView1.setTextColor(Color.GRAY);break;
                 }
 
 
@@ -155,10 +156,9 @@ public class SignInInfoActivity extends AppCompatActivity {
                 textView.setTextSize(22);
                 textView.setTextColor(Color.BLACK);
 
-                TextView textView1 = new TextView(this);
+
                 textView1.setText(msg);
                 textView1.setTextSize(14);
-                textView1.setTextColor(Color.GRAY);
                 textView1.setPadding(0,0,0,0);
 
                 linearLayout1.setOnClickListener(new textListener(textView));

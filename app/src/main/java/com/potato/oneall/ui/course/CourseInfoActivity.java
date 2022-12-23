@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -211,7 +212,7 @@ public class CourseInfoActivity extends AppCompatActivity {
                         System.out.println(Objects.requireNonNull(response.body()).string());
                     }
                 });
-
+                new Handler().postDelayed(this::recreate,500);
             }).show();
 
         });

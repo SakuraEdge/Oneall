@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.potato.oneall.ui.course.ClassSetActivity;
+import com.potato.oneall.ui.course.ScoreClassActivity;
 import com.potato.oneall.ui.param.DBHelper;
 import com.potato.oneall.ui.web.WebActivity;
 import com.potato.oneall.ui.web.WebActivity3;
@@ -111,7 +112,7 @@ public class MenuTeaActivity extends AppCompatActivity {
 
         scoreInfoButton.setOnClickListener(v -> {
                 Intent intent = new Intent();
-                intent.setClass(MenuTeaActivity.this, WebActivity3.class);
+                intent.setClass(MenuTeaActivity.this, ScoreClassActivity.class);
                 //跳转至DIY界面
                 startActivity(intent);
         });

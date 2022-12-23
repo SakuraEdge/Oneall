@@ -72,6 +72,14 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.potato.oneall.ui.course.ClassTalkRoomActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ScoreClassActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ScoreStuActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ScoreCourseActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ScoreStuInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

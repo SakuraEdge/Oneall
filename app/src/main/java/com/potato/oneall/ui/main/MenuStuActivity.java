@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.potato.oneall.ui.course.ClassInfoActivity;
+import com.potato.oneall.ui.course.ScoreStuInfoActivity;
 import com.potato.timetable.R;
 import com.potato.oneall.ui.param.DBHelper;
 import android.database.Cursor;
@@ -111,7 +112,7 @@ public class MenuStuActivity extends AppCompatActivity {
 
         scoreInfoButton.setOnClickListener(v -> {
                 Intent intent = new Intent();
-                intent.setClass(MenuStuActivity.this, WebActivity3.class);
+                intent.setClass(MenuStuActivity.this, ScoreStuInfoActivity.class);
                 //跳转至DIY界面
                 startActivity(intent);
         });
