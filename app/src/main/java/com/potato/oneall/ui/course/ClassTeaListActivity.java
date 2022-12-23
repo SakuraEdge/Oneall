@@ -62,6 +62,7 @@ public class ClassTeaListActivity extends AppCompatActivity {
         ImageButton courseList = findViewById(R.id.courseListButton);
         ImageButton stuList = findViewById(R.id.stuListButton);
         ImageButton stuAdd = findViewById(R.id.stuAddButton);
+        ImageButton talkRoom = findViewById(R.id.talkRoomButton);
 
 
         courseList.setOnClickListener(v -> {
@@ -76,6 +77,14 @@ public class ClassTeaListActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.putExtra("className",classname);
             intent.setClass(ClassTeaListActivity.this,ClassStuInfoActivity.class);
+            startActivity(intent);
+        });
+
+        talkRoom.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("className",classname);
+            intent.putExtra("name",name);
+            intent.setClass(ClassTeaListActivity.this,ClassTalkRoomActivity.class);
             startActivity(intent);
         });
 

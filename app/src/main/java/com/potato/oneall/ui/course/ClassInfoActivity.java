@@ -45,6 +45,7 @@ import okhttp3.Response;
 
 public class ClassInfoActivity extends AppCompatActivity {
     JSONArray array = new JSONArray();
+    String classname;
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class ClassInfoActivity extends AppCompatActivity {
 
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery("select * from login_info",null);
         cursor.moveToFirst();
-        String classname = cursor.getString(cursor.getColumnIndex("classname"));
+        classname = cursor.getString(cursor.getColumnIndex("classname"));
         name = cursor.getString(cursor.getColumnIndex("name"));
         cursor.close();
         System.out.println(classname);
@@ -179,8 +180,9 @@ public class ClassInfoActivity extends AppCompatActivity {
             String courseName = textView.getText().toString();
             courseName = courseName.replace("课程名称：","");
             intent.putExtra("courseName",courseName);
+            intent.putExtra("classname",classname);
             intent.putExtra("name",name);
-            intent.setClass(ClassInfoActivity.this,CourseInfoActivity.class);
+            intent.setClass(ClassInfoActivity.this,StuCourseInfoActivity.class);
             startActivity(intent);
         }
     }

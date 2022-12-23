@@ -47,7 +47,6 @@
             android:name="com.potato.oneall.ui.main.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -66,6 +65,12 @@
         <activity android:name="com.potato.oneall.ui.course.ClassTeaListActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.potato.oneall.ui.course.ClassStuInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.SignInInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.StuCourseInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.potato.oneall.ui.course.ClassTalkRoomActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
