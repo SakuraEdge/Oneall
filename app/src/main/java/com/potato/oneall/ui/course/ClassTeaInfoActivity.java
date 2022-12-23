@@ -180,7 +180,14 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
                 String str = JSON.toJSONString(array.get(i));
                 JSONObject maps = JSON.parseObject(str);
 
+                String isOver = (String) maps.get("isOver");
+
                 String classname = "课程名称：" + maps.get("name");
+
+                if(Objects.equals(isOver, "true")){
+                    classname += "（已结课）";
+                }
+
                 String msg = "课程地址：" + maps.get("address") + " \t \t" + "授课老师："+maps.get("teacherName");
 
                 LinearLayout linearLayout1 = new LinearLayout(this);
@@ -252,7 +259,15 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent();
             String courseName = textView.getText().toString();
+
             courseName = courseName.replace("课程名称：","");
+            if (courseName.replace("（已结课）", "").equals(courseName)){
+                intent.putExtra("isOver","false");
+            }
+            else{
+                intent.putExtra("isOver","true");
+            }
+            courseName = courseName.replace("（已结课）","");
             intent.putExtra("courseName",courseName);
             intent.putExtra("name",name);
             intent.putExtra("classname",classname);
@@ -282,6 +297,7 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
 
             String courseName = textView.getText().toString();
             courseName = courseName.replace("课程名称：","");
+            courseName = courseName.replace("（已结课）","");
 
             String msg = "是否删除课程"+courseName+"？";
             textView1.setText(msg);

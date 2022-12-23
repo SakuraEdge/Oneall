@@ -48,6 +48,7 @@ public class CourseInfoActivity extends AppCompatActivity {
     String courseName;
     String name;
     String classname;
+    String isOver;
     String code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +57,23 @@ public class CourseInfoActivity extends AppCompatActivity {
         courseName = gets.getStringExtra("courseName");
         name = gets.getStringExtra("name");
         classname = gets.getStringExtra("classname");
+        isOver = gets.getStringExtra("isOver");
 
         setContentView(R.layout.course_info);
         TextView textView = findViewById(R.id.classname);
         LinearLayout linearLayout = findViewById(R.id.signInLy);
         ImageButton signInButton = findViewById(R.id.signInButton);
-        String title = courseName;
+        ImageButton courseOver = findViewById(R.id.courseOver);
+
+        String title;
+        if (Objects.equals(isOver, "true")){
+            title = courseName + "（已结课）";
+        }
+        else{
+            title = courseName;
+        }
         textView.setText(title);
+
 
         OkHttpClient client = SSLPass.sslPass();
         String url="https://223.247.140.116:35152/SelectSign";
@@ -93,6 +104,52 @@ public class CourseInfoActivity extends AppCompatActivity {
             initData(linearLayout);
             },500);
 
+
+
+        courseOver.setOnClickListener(v -> {
+            LinearLayout linearLayout1 = new LinearLayout(this);
+            linearLayout1.setPadding(20, 20, 20, 20);
+            linearLayout1.setOrientation(android.widget.LinearLayout.VERTICAL);
+
+            TextView textView1 = new TextView(this);
+            textView1.setPadding(20,20,20,20);
+            textView1.setText("是否结课");
+            linearLayout1.addView(textView1);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("开启签到")
+                    .setView(linearLayout1).setNegativeButton("取消", null);
+            builder.setPositiveButton("确定", (dialog, which) -> {
+
+                Map<String,String> map1 = new HashMap<>();
+                map1.put("classname",classname);
+                map1.put("courseName",courseName);
+
+                String url1 = "https://223.247.140.116:35152/EndCourse";
+                String json1 = JSON.toJSONString(map1);
+                RequestBody requestBody1 = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json1);
+
+                Request request1 = new Request.Builder()
+                        .post(requestBody1)
+                        .url(url1)
+                        .build();
+                Call call1 = client.newCall(request1);
+                call1.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        e.printStackTrace();
+                    }
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        System.out.println(Objects.requireNonNull(response.body()).string());
+                    }
+                });
+                String msg = textView.getText()+"（已结课）";
+                textView.setText(msg);
+                recreate();
+            }).show();
+
+        });
 
         signInButton.setOnClickListener(v -> {
             LinearLayout linearLayout1 = new LinearLayout(this);
@@ -154,7 +211,7 @@ public class CourseInfoActivity extends AppCompatActivity {
                         System.out.println(Objects.requireNonNull(response.body()).string());
                     }
                 });
-                recreate();
+
             }).show();
 
         });

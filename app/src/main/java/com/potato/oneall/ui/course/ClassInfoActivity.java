@@ -106,7 +106,12 @@ public class ClassInfoActivity extends AppCompatActivity {
                 String str = JSON.toJSONString(array.get(i));
                 JSONObject maps = JSON.parseObject(str);
 
+                String isOver = (String) maps.get("isOver");
+
                 String classname = "课程名称：" + maps.get("name");
+                if(Objects.equals(isOver, "true")){
+                    classname += "（已结课）";
+                }
                 String msg = "课程地址：" + maps.get("address") + " \t \t" + "授课老师："+maps.get("teacherName");
 
                 LinearLayout linearLayout1 = new LinearLayout(this);
@@ -179,6 +184,7 @@ public class ClassInfoActivity extends AppCompatActivity {
             Intent intent = new Intent();
             String courseName = textView.getText().toString();
             courseName = courseName.replace("课程名称：","");
+            courseName = courseName.replace("（已结课）","");
             intent.putExtra("courseName",courseName);
             intent.putExtra("classname",classname);
             intent.putExtra("name",name);
