@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.potato.oneall.ui.course.ClassInfoActivity;
+import com.potato.oneall.ui.course.ClassTalkRoomActivity;
 import com.potato.oneall.ui.course.ScoreStuInfoActivity;
 import com.potato.timetable.R;
 import com.potato.oneall.ui.param.DBHelper;
@@ -32,6 +33,8 @@ import java.util.List;
 
 public class MenuStuActivity extends AppCompatActivity {
 
+    String classname;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,17 @@ public class MenuStuActivity extends AppCompatActivity {
         List<Integer> images = new ArrayList<>();
         images.add(R.mipmap.banner_1);
         images.add(R.mipmap.banner_2);
+
+        DBHelper dbHelper1 = new DBHelper(MenuStuActivity.this);
+        SQLiteDatabase db1 = dbHelper1.getWritableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db1.rawQuery("select * from login_info",null);
+        cursor.moveToFirst();
+        classname = cursor.getString(cursor.getColumnIndex("classname"));
+        name = cursor.getString(cursor.getColumnIndex("name"));
+        cursor.close();
+
+        System.out.println(classname);
+        System.out.println(name);
 
         Banner banner = findViewById(R.id.banner);
         //设置内置样式
@@ -63,6 +77,9 @@ public class MenuStuActivity extends AppCompatActivity {
         ImageButton scoreInfoButton = findViewById(R.id.scoreInfoButton);
         //跳转至成绩查询页面
         ImageButton tableButton = findViewById(R.id.tableButton);
+
+        ImageButton talkRoomButton = findViewById(R.id.talkroom);
+
 
         //登出
         ImageButton LoginOutButton = findViewById(R.id.login_out);
@@ -107,6 +124,14 @@ public class MenuStuActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setClass(MenuStuActivity.this, ClassInfoActivity.class);
             //跳转至班级信息界面
+            startActivity(intent);
+        });
+
+        talkRoomButton.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("className",classname);
+            intent.putExtra("name",name);
+            intent.setClass(MenuStuActivity.this, ClassTalkRoomActivity.class);
             startActivity(intent);
         });
 

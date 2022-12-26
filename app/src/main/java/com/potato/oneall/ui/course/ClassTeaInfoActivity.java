@@ -119,7 +119,7 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
             linearLayout1.addView(time);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("创建新班级")
+            builder.setTitle("创建新课程")
                     .setView(linearLayout1).setNegativeButton("取消",null);
             builder.setPositiveButton("创建", (dialog, which) -> {
                 String name1 = coursename.getText().toString();
@@ -221,7 +221,7 @@ public class ClassTeaInfoActivity extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 textView.setText(classname);
                 textView.setId(i);
-                textView.setTextSize(22);
+                textView.setTextSize(18);
                 textView.setTextColor(Color.BLACK);
 
                 TextView textView1 = new TextView(this);

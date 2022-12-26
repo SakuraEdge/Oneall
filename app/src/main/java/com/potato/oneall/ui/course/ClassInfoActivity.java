@@ -148,7 +148,7 @@ public class ClassInfoActivity extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 textView.setText(classname);
                 textView.setId(i);
-                textView.setTextSize(22);
+                textView.setTextSize(18);
                 textView.setTextColor(Color.BLACK);
 
                 TextView textView1 = new TextView(this);

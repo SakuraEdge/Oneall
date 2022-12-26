@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="聊天室"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <ScrollView
@@ -45,24 +45,28 @@
         android:id="@+id/talk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <EditText
             android:id="@+id/talkMsg"
-            android:layout_width="340dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="start|center"
             android:paddingStart="20dp"
             android:hint="输入聊天内容"
-            android:textSize="24sp"/>
+            android:textSize="18sp"/>
 
         <ImageButton
             android:id="@+id/talkBtn"
             style="@style/ImageButton.Compat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
             android:layout_gravity="right"
             android:src="@mipmap/send" />
     </LinearLayout>

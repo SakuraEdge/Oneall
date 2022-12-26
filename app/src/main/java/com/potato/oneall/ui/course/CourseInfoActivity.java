@@ -118,7 +118,7 @@ public class CourseInfoActivity extends AppCompatActivity {
             linearLayout1.addView(textView1);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("开启签到")
+            builder.setTitle("进行结课")
                     .setView(linearLayout1).setNegativeButton("取消", null);
             builder.setPositiveButton("确定", (dialog, which) -> {
 
